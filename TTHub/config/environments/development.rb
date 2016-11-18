@@ -51,4 +51,7 @@ Rails.application.configure do
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
+
+  #Ensures that Paperclip, which allows image uploads with Ruby, works right
+  Paperclip.options[:command_path] = "/usr/local/bin/"
 end
