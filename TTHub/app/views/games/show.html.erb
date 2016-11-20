@@ -1,19 +1,46 @@
 <p id="notice"><%= notice %></p>
+<div id="content">
+  <div class="TopRow">
+      <strong>Name:</strong>
+      <%= @game.name %>
+    
+      <strong>Player Count:</strong>
+      <%= @game.player_count %> players
+      <strong>Length of Game:</strong>
+      <%= @game.time %> minutes
+  </div>
+  <p id = "desc">
+    <strong>Description:</strong>
+    <%= @game.description %>
+  </p>
+<div id="gameTile">
+  <%= image_tag @game.image.url(:medium), :style => "position: relative" %>
+  <div id="gameBack" style="display: none; background-color: black; position: absolute;">
+    
+  </div>
+</div>
 
-<p>
-  <strong>Name:</strong>
-  <%= @game.name %>
-</p>
+<span id="edit">
+  <%= link_to 'Edit', edit_game_path(@game) %> 
+</span>
+<span id="back">
+  <%= link_to 'Back', games_path %>
+</span>
 
-<p>
-  <strong>Description:</strong>
-  <%= @game.description %>
-</p>
+</div>
+<script>
+  $(document).ready(function() {
+    var topWidth = $(".TopRow").width();
+    $("#content").css("width", topWidth+12); 
+    var contWidth = -$("#content").width()/2;
+    var contHeight = -$("#content").height()/2;
+    $("#content").css("margin-top", contHeight); 
+    $("#content").css("margin-left", contWidth); 
+  });
 
-<p>
-  <strong>Category:</strong>
-  <%= @game.category %>
-</p>
-
-<%= link_to 'Edit', edit_game_path(@game) %> |
-<%= link_to 'Back', games_path %>
+  $("#gameTile").on('mouseenter', function() {
+    $("#gameBack").fadeIn(1000);
+  }).on('mouseleave', function() {
+    $("#gameBack").fadeOut(1000);
+  });
+</script>
